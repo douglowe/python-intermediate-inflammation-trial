@@ -24,6 +24,7 @@ jobs:
 
     - name: Install Python dependencies
       run: |
+        conda install --yes conda-build
         conda env create -n testsuite -f env.yml
         conda develop -n testsuite .
      
