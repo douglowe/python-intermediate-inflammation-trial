@@ -20,12 +20,14 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.8
 
     - name: Install Python dependencies
       run: |
         conda env create -n testsuite -f env.yml
-        source activate testsuite
+        conda init
+        . ~/.bashrc
+        conda activate testsuite
         conda develop .
      
 
