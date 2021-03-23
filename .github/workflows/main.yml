@@ -25,12 +25,9 @@ jobs:
     - name: Install Python dependencies
       run: |
         conda env create -n testsuite -f env.yml
-        conda init bash
-        . ~/.bashrc
-        conda activate testsuite
-        conda develop .
+        conda develop -n testsuite .
      
 
     - name: Test with PyTest
       run: |
-        pytest --cov=inflammation.models tests/test_models.py
+        conda run -n testsuite pytest --cov=inflammation.models tests/test_models.py
