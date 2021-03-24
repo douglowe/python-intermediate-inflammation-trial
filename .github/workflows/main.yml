@@ -26,6 +26,7 @@ jobs:
       with:
         auto-update-conda: true
         python-version: ${{ matrix.python-version }}
+        activate-environment: patient
         environment-file: env.yml
 
     - name: Setup Develop
