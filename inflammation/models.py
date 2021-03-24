@@ -36,3 +36,14 @@ def daily_min(data):
 # TODO(lesson-design) Add Patient class
 # TODO(lesson-design) Implement data persistence
 # TODO(lesson-design) Add Doctor class
+
+def patient_normalise(data):
+    """Normalise patient data from a 2D inflammation data array."""
+    if np.any(data <0):
+        raise ValueError('Inflammation values should not be negative')
+    max = np.max(data, axis=1)
+    with np.errstate(invalid='ignore', divide='ignore'):
+        normalised = data / max[:, np.newaxis]
+    normalised[np.isnan(normalised)] = 0
+    normalised[normalised < 0] = 0
+    return normalised
