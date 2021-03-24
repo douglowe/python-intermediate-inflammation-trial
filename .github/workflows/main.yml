@@ -32,6 +32,7 @@ jobs:
         wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
         bash miniconda.sh -b -p $HOME/miniconda
         source "$HOME/miniconda/etc/profile.d/conda.sh"
+        conda install --yes conda-build
         conda env create -n testsuite -f env.yml
         conda develop -n testsuite .
      
