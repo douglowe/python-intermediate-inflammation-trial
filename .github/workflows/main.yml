@@ -42,6 +42,7 @@ jobs:
       run: |
         bash miniconda.sh -b -p $HOME/miniconda
         source "$HOME/miniconda/etc/profile.d/conda.sh"
+        conda init bash
         conda install --yes conda-build
         conda env create -n testsuite -f env.yml
         conda activate testsuite
