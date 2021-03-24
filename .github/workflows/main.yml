@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
 #        os: [ubuntu-latest, macos-latest, windows-latest]
-        os: [ubuntu-latest, macos-latest]
-        python-version: [3.7, 3.8]
+        os: [ubuntu-latest]
+        python-version: [3.7]
 
     # a job is a seq of steps
     steps:
@@ -43,7 +43,7 @@ jobs:
         bash miniconda.sh -b -p $HOME/miniconda
         source "$HOME/miniconda/etc/profile.d/conda.sh"
         conda install -q --yes conda-build
-        echo "conda env create -q -n testsuite python=${{ matrix.python-version }}"
+        conda create -q --yes -n testsuite python=${{ matrix.python-version }}
         grep -v ' python=' env.yml > env_temp.yml
         conda env update -n testsuite -f env_temp.yml
         conda activate testsuite
