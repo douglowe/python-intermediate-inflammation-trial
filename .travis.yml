@@ -1,0 +1,12 @@
+language: python
+
+python:
+  - "3.7"
+
+install:
+  - conda install --yes conda-build
+  - conda env create -n testsuite -f env.yml
+  - conda develop -n testsuite .
+
+script
+  - conda run -n testsuite pytest --cov=inflammation.models tests/test_models.py
