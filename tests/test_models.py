@@ -85,7 +85,7 @@ def test_daily_min_integers():
     npt.assert_array_equal(np.array([1, 2]), daily_min(test_array))
 
 def test_daily_min_string():
-    """Test for TypeError when passing strings"""
+    """Test for TypeError when passing strings, this passes if there's a failure"""
     from inflammation.models import daily_min
 
     with pytest.raises(TypeError):
