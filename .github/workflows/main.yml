@@ -28,17 +28,17 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - name: Download Miniconda for OSX
-      runs-on: macos-latest
+      if: matrix.os == 'macos-latest'
       run: |
         wget https://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh -O miniconda.sh
 
     - name: Download Miniconda for linux
-      runs-on: ubuntu-latest
+      if: matrix.os == 'ubuntu-latest'
       run: |
         wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
 
     - name: Install Conda Dependencies
-      runs-on: [ubuntu-latest, macos-latest]
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       run: |
         bash miniconda.sh -b -p $HOME/miniconda
         source "$HOME/miniconda/etc/profile.d/conda.sh"
