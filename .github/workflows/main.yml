@@ -42,14 +42,14 @@ jobs:
       run: |
         bash miniconda.sh -b -p $HOME/miniconda
         source "$HOME/miniconda/etc/profile.d/conda.sh"
-        conda install --yes conda-build
-        conda env create -n testsuite -f env.yml
+        conda install -q --yes conda-build
+        conda env create -q -n testsuite -f env.yml
         conda activate testsuite
         conda develop .
      
 
     - name: Test with PyTest
       run: |
-        source "$HOME/miniconda/etc/pole.d/conda.sh"
+        source "$HOME/miniconda/etc/profile.d/conda.sh"
         conda activate testsuite
         pytest --cov=inflammation.models tests/test_models.py
