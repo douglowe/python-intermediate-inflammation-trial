@@ -43,7 +43,7 @@ jobs:
         bash miniconda.sh -b -p $HOME/miniconda
         source "$HOME/miniconda/etc/profile.d/conda.sh"
         conda install -q --yes conda-build
-        conda env create -q -n testsuite python=${{ matrix.python-version }}
+        echo "conda env create -q -n testsuite python=${{ matrix.python-version }}"
         grep -v ' python=' env.yml > env_temp.yml
         conda env update -n testsuite -f env_temp.yml
         conda activate testsuite
