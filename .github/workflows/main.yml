@@ -27,16 +27,21 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install Python dependencies
+    - name: Download Miniconda for linux
+      runs-on: ubuntu-latest
       run: |
         wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+
+    - name: Install Conda Dependencies
+      runs-on: [ubuntu-latest, macos-latest]
         bash miniconda.sh -b -p $HOME/miniconda
         source "$HOME/miniconda/etc/profile.d/conda.sh"
         conda install --yes conda-build
         conda env create -n testsuite -f env.yml
-        conda develop -n testsuite .
+        conda activate testsuite
+        conda develop .
      
 
     - name: Test with PyTest
       run: |
-        conda run -n testsuite pytest --cov=inflammation.models tests/test_models.py
+        pytest --cov=inflammation.models tests/test_models.py
