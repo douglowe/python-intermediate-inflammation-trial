@@ -3,6 +3,9 @@ language: python
 python:
     - "3.7"
 
+virtualenv:
+    system_site_packages: true
+
 install:
     - conda install --yes conda-build
     - conda env create -n testsuite -f env.yml
